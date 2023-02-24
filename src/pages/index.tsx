@@ -3,15 +3,7 @@ import Head from "next/head"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import { api } from "~/utils/api"
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Button, Grid, Typography } from "@mui/material"
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" })

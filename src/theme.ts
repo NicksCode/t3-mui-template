@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Roboto } from "@next/font/google"
 import { createTheme } from "@mui/material/styles"
-import { red } from "@mui/material/colors"
+import { blue } from "@mui/material/colors"
 
 export const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -15,15 +12,7 @@ export const roboto = Roboto({
 // Create a theme instance.
 const theme = createTheme({
   palette: {
-    primary: {
-      main: "#556cd6",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-    error: {
-      main: red.A400,
-    },
+    primary: blue,
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
