@@ -3,7 +3,7 @@ import Head from "next/head"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import { api } from "~/utils/api"
-import { Button, Grid, Typography } from "@mui/material"
+import { Box, Button, Container, Grid, Typography } from "@mui/material"
 import AppNavBar from "./components/AppNavBar"
 
 const Home: NextPage = () => {
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppNavBar />
-      <main>
+      <Container component="main" maxWidth="lg">
         <Grid
           container
           spacing={2}
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
             <AuthShowcase />
           </Grid>
         </Grid>
-      </main>
+      </Container>
     </>
   )
 }

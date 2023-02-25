@@ -12,11 +12,23 @@ import Button from "@mui/material/Button"
 import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
 import AdbIcon from "@mui/icons-material/Adb"
+import { useRouter } from "next/navigation"
 
-const pages = ["Products", "Pricing", "Blog"]
+type PageLink = {
+  label: string
+  url: string
+}
+const pages: PageLink[] = [
+  { label: "Products", url: "/" },
+  { label: "Pricing", url: "/about" },
+  { label: "Blog", url: "/about" },
+  { label: "About", url: "/about" },
+]
 const settings = ["Profile", "Account", "Dashboard", "Logout"]
 
 function AppNavBar() {
+  const router = useRouter()
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -29,8 +41,9 @@ function AppNavBar() {
     setAnchorElUser(event.currentTarget)
   }
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (pageLink: PageLink) => {
     setAnchorElNav(null)
+    void router.push(pageLink.url)
   }
 
   const handleCloseUserMenu = () => {
@@ -38,7 +51,7 @@ function AppNavBar() {
   }
 
   return (
-    <AppBar position="static" color="transparent" elevation="0">
+    <AppBar position="static" color="transparent" elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -90,8 +103,11 @@ function AppNavBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.label}
+                  onClick={() => handleCloseNavMenu(page)}
+                >
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -124,13 +140,15 @@ function AppNavBar() {
             }}
           >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+              <>
+                <Button
+                  key={page.label}
+                  onClick={() => handleCloseNavMenu(page)}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
+                  {page.label}
+                </Button>
+              </>
             ))}
           </Box>
 
